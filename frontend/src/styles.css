@@ -1,0 +1,8 @@
+
+body { font-family: Arial, sans-serif; margin:20px; background:#f6f8fa; color:#111;}
+.app { max-width:1100px; margin:0 auto; }
+.topnav { margin-bottom:20px; }
+.card { background:white; padding:16px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+.btn { padding:8px 12px; border-radius:6px; cursor:pointer; border:1px solid #ddd; background:#fff; }
+.field { display:block; margin-bottom:8px; }
+.grid { display:grid; gap:10px; }
