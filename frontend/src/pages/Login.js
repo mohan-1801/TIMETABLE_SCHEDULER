@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [u, setU] = useState('admin');
-  const [p, setP] = useState('admin123');
+  const [u, setU] = useState();
+  const [p, setP] = useState();
   const [msg, setMsg] = useState('');
   const navigate = useNavigate();
 
@@ -20,7 +20,7 @@ export default function Login() {
         localStorage.setItem('token', res.data.token);
         setMsg('✅ Login successful! Redirecting...');
         setTimeout(() => {
-          navigate('/home'); // ✅ Go to Home page
+          navigate('/home'); 
         }, 800);
       } else {
         setMsg('❌ Invalid username or password');
@@ -38,7 +38,6 @@ export default function Login() {
           <div style={styles.field}>
             <label>Username</label>
             <input
-              value={u}
               onChange={(e) => setU(e.target.value)}
               style={styles.input}
             />
@@ -47,7 +46,7 @@ export default function Login() {
             <label>Password</label>
             <input
               type="password"
-              value={p}
+              
               onChange={(e) => setP(e.target.value)}
               style={styles.input}
             />
@@ -58,7 +57,6 @@ export default function Login() {
         </form>
         <p style={styles.message}>{msg}</p>
         <p style={styles.hint}>
-          (Use default credentials: <b>admin / admin123</b>)
         </p>
       </div>
     </div>
