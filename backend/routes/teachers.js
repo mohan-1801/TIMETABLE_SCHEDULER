@@ -1,15 +1,32 @@
-
 const express = require('express');
 const router = express.Router();
 const Teacher = require('../models/Teacher');
 
-router.get('/', async (req,res)=>{
-  const list = await Teacher.find();
-  res.json(list);
+// Get all teachers
+router.get('/', async (req, res) => {
+  const teachers = await Teacher.find();
+  res.json(teachers);
 });
-router.post('/', async (req,res)=>{
-  const t = new Teacher(req.body);
-  await t.save();
-  res.json(t);
+
+// Add teacher
+router.post('/', async (req, res) => {
+  try {
+    const teacher = new Teacher(req.body);
+    await teacher.save();
+    res.json(teacher);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
+
+// Delete teacher
+router.delete('/:id', async (req, res) => {
+  try {
+    await Teacher.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Teacher deleted' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

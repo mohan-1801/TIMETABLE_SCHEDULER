@@ -30,7 +30,7 @@ require('dotenv').config();
 
     await new Admin({
       username: 'admin',
-      password: plainPassword, // store plain password (no hash)
+      password: plainPassword, 
     }).save();
 
     console.log('✅ Admin created: admin/admin123');
