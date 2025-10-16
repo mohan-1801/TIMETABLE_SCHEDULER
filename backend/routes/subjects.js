@@ -19,6 +19,17 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  const { year, section } = req.query;
+  const filter = {};
+  if (year) filter.year = Number(year);
+  if (section) filter.section = section;
+  try {
+    const subs = await Subject.find(filter);
+    res.json(subs);
+  } catch (e) { res.status(500).json({error: e.message}); }
+});
+
 // Delete subject
 router.delete('/:id', async (req, res) => {
   try {

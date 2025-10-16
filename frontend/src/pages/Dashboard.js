@@ -6,7 +6,7 @@ export default function Dashboard() {
   const [teachers, setTeachers] = useState([]);
   const [subjects, setSubjects] = useState([]);
   const [teacherForm, setTeacherForm] = useState({ name: "", email: "", department: "" });
-  const [subjectForm, setSubjectForm] = useState({ name: "", code: "", year: "", section: "", type: "" });
+  const [subjectForm, setSubjectForm] = useState({ name: "", code: "",  type: "" });
 
   useEffect(() => { fetchData(); }, []);
 
@@ -27,7 +27,7 @@ export default function Dashboard() {
   async function addSubject(e) {
     e.preventDefault();
     await axios.post("http://localhost:5000/api/subjects", subjectForm);
-    setSubjectForm({ name: "", code: "", year: "", section: "", type: "" });
+    setSubjectForm({ name: "", code: "", type: "" });
     fetchData();
   }
 
@@ -102,20 +102,7 @@ export default function Dashboard() {
               onChange={(e) => setSubjectForm({ ...subjectForm, code: e.target.value })}
               required
             />
-            <input
-              type="number"
-              placeholder="Year"
-              value={subjectForm.year}
-              onChange={(e) => setSubjectForm({ ...subjectForm, year: e.target.value })}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Section"
-              value={subjectForm.section}
-              onChange={(e) => setSubjectForm({ ...subjectForm, section: e.target.value })}
-              required
-            />
+            
             <select
               value={subjectForm.type}
               onChange={(e) => setSubjectForm({ ...subjectForm, type: e.target.value })}
